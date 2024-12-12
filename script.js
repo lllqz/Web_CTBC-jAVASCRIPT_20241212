@@ -163,3 +163,17 @@ console.log(varCount);
 // console.log("let:", letTest);  // 錯誤:超出作用域
 // console.log("const:", constTest); // 錯誤:超出作用域
 console.log("var:", varTest);
+
+console.log("%cfunction 函式、方法或功能", "color: pink");
+// 函式語法
+// function 函式名稱() {}
+function logLine() {
+    console.log("%c---我是分隔線--", "color: pink");
+}
+
+// 函式需要被呼叫：函式名稱();
+logLine();
+logLine();
+logLine();
+logLine();
+logLine();
