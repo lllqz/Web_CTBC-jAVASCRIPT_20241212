@@ -177,3 +177,107 @@ logLine();
 logLine();
 logLine();
 logLine();
+
+// 對照組(比較不適合的寫法)
+function logLinePink() {
+    console.log("%c------我是分隔線------", "color: pink");
+}
+function logLineBlue() {
+    console.log("%c------我是分隔線------", "color: blue");
+}
+
+logLinePink();
+logLineBlue();
+
+// 程式要注意的事情：思考未來的維護姓、擴充性、可讀性
+// (比較適合的寫法)
+// function 函式名稱 (參數) { }
+function logLineWithColor(color) {
+    console.log("%c------我是分隔線------", `color: ${color}`);
+}
+
+logLineWithColor("red");
+logLineWithColor("black");
+
+// 參數的預設值
+function logLongLineWithColor(color = "black") {
+    console.log("%c------------我是分隔線------------", `color: ${color}`);
+}
+
+logLongLineWithColor("red");
+// 不給參數會直接使用預設值
+logLongLineWithColor();
+
+console.log("%c表達式函式", "color: pink");
+
+// 表達式函式語法：
+// const 變數 = 函式 (參數) {}
+const print = function (color = "red") {
+    console.log("%c測試", `color: ${color}`);
+}
+
+// 變數名稱(參數)
+print("red");
+print("green");
+
+// 多個參數
+const printMessage = function (color = "red", message = "這是預設文字") {
+    console.log(`%c${message}`, `color: ${color}`);
+}
+
+printMessage();
+printMessage("red");
+printMessage("green","訊息");
+// 想要使用預設顏色，文字要使用"訊息"
+printMessage("訊息");  //錯誤
+printMessage(undefined,"訊息");  //正確結果
+
+console.log("%c回傳值", "color: pink");
+
+// 有回傳值的函式，必須使用一個 return 關鍵字將值傳回
+function double(number) {
+    return number * 2;
+}
+
+// 使用方式 1:用變數將傳回值儲存
+const result = double(10);
+console.log(result);
+
+// 使用方式 2:直接將傳回函式當作數值使用
+console.log(double(7));
+
+// 表達式傳回函式
+// 平方函式
+const square = function (number) {
+    return number * number;
+}
+console.log(square(9));
+console.log(square(321));
+
+// 提升 hosting
+// 在定義函式以前就能呼叫
+// 一般函式會提升
+console.log("一般函式:",Math.floor(bmi(60, 1.68)));
+// 表達式與箭頭函式不會提升，不能在定義以前呼叫 (相對安全)
+// console.log("表達式函式:",Math.floor(bmiExpression(60, 1.68)));
+// console.log("箭頭函式:",Math.floor(bmiArrow(60, 1.68)));
+
+// 一般函式:BMI
+function bmi(weight, height) {
+    return weight / square (height);
+}
+console.log(Math.floor(bmi(60, 1.68)));
+
+//表達函式:BMI
+const bmiExpression = function (weight, height) {
+    return weight / square (height);
+}
+console.log(Math.floor(bmiExpression(60, 1.68)));
+console.log(Math.floor(bmiExpression(70, 1.90)));
+
+// 箭頭函式 =>
+const bmiArrow = (weight, height) => {
+    return weight / square (height);
+}
+console.log(Math.floor(bmiArrow(60, 1.68)));
+console.log(Math.floor(bmiArrow(90, 1.78)));
